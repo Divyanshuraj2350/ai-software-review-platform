@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>AI Software Review Platform</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
+<form id="uploadForm" enctype="multipart/form-data">
 
-<body>
+    <input
+        type="file"
+        id="codeFile"
+        name="file"
+        accept=".py,.java,.cpp,.c,.js"
+    >
 
-<h1>AI Software Review Platform</h1>
+    <br><br>
 
-<p>Upload your source code for AI review.</p>
+    <button type="submit">
+        Analyze Code
+    </button>
 
-<button>Analyze Code</button>
+</form>
+
+<p id="message"></p>
 
 <script src="/static/js/main.js"></script>
-
-</body>
-</html>
