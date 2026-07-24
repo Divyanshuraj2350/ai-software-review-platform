@@ -1,0 +1,44 @@
+[
+    {
+        "filename": "6.py",
+        "score": 8.0,
+        "summary": "A simple and functional script that demonstrates basic sentiment analysis using the Hugging Face transformers pipeline.",
+        "date": "24-07-2026 14:07"
+    },
+    {
+        "filename": "6.py",
+        "score": 9.0,
+        "summary": "A clean and functional Python script that utilizes the Hugging Face transformers library to perform sentiment analysis on a list of hardcoded sentences and prints the output.",
+        "date": "24-07-2026 13:53"
+    },
+    {
+        "filename": "gen10.py",
+        "score": 6.5,
+        "summary": "A command-line PDF parser and search chatbot that extracts text from an Indian Penal Code PDF, splits it into sections using regex, and offers a basic keyword search over section names and content.",
+        "date": "24-07-2026 13:43"
+    },
+    {
+        "filename": "gen10.py",
+        "score": 7.2,
+        "summary": "A basic CLI chatbot that reads an IPC PDF file, parses its sections using regular expressions, and allows users to search them. It works for simple use cases but lacks error handling, runs code directly on import, and uses inefficient string concatenation.",
+        "date": "24-07-2026 13:42"
+    },
+    {
+        "filename": "6.py",
+        "score": 9.0,
+        "summary": "A well-structured and functional Python script that demonstrates basic sentiment analysis using the Hugging Face Transformers library.",
+        "date": "24-07-2026 13:42"
+    },
+    {
+        "filename": "6.py",
+        "score": 9.0,
+        "summary": "A clean and functional Python script that demonstrates basic sentiment analysis using the Hugging Face transformers pipeline.",
+        "date": "24-07-2026 10:31"
+    },
+    {
+        "filename": "gen10.py",
+        "score": 6.5,
+        "summary": "A command-line chatbot that parses a legal PDF (IPC), splits its contents into sections using regular expressions, and allows users to search for section names or keywords.",
+        "date": "24-07-2026 10:27"
+    }
+]

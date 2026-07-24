@@ -1,20 +1,86 @@
-<form id="uploadForm" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
 
-    <input
-        type="file"
-        id="codeFile"
-        name="file"
-        accept=".py,.java,.cpp,.c,.js"
-    >
+<head>
 
-    <br><br>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <button type="submit">
-        Analyze Code
-    </button>
+    <title>AI Software Review Platform</title>
 
-</form>
+    <link rel="stylesheet" href="/static/style.css">
 
-<p id="message"></p>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Software Review Platform</h1>
+
+    <p class="subtitle">
+        Upload your Python file and receive an AI-powered code review.
+    </p>
+
+    <form id="uploadForm">
+
+        <input
+            type="file"
+            id="codeFile"
+            name="file"
+            accept=".py"
+            required>
+
+        <button type="submit">
+            Analyze Code
+        </button>
+
+    </form>
+
+    <!-- Loading Animation -->
+    <div
+        id="loading"
+        class="loading"
+        style="display:none;">
+
+        <div class="spinner"></div>
+
+        <p>Uploading file...</p>
+
+    </div>
+
+    <!-- AI Review -->
+    <div id="message"></div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+
+        <!-- Download PDF -->
+        <a
+            id="downloadBtn"
+            href="/download-pdf"
+            class="download-btn"
+            style="display:none;">
+
+            📄 Download PDF Report
+
+        </a>
+
+        <!-- View History -->
+        <a
+            href="/history"
+            class="history-btn">
+
+            📚 View Review History
+
+        </a>
+
+    </div>
+
+</div>
 
 <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>

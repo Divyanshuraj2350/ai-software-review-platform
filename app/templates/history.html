@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Review History</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📄 Review History</h1>
+
+    {% if history|length == 0 %}
+
+        <div class="history-card">
+
+            <h2>No Reviews Yet</h2>
+
+            <p>You haven't analyzed any Python files yet.</p>
+
+        </div>
+
+    {% endif %}
+
+    {% for item in history %}
+
+    <div class="history-card">
+
+        <h2>{{ item.filename }}</h2>
+
+        <p><strong>⭐ Score:</strong> {{ item.score }}/10</p>
+
+        <p><strong>📅 Date:</strong> {{ item.date }}</p>
+
+        <p>{{ item.summary }}</p>
+
+        <div class="history-actions">
+
+            <a
+                href="/delete/{{ loop.index0 }}"
+                class="delete-btn">
+
+                🗑 Delete
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+    <br>
+
+    <div style="text-align:center;">
+
+        <a href="/" class="download-btn">
+
+            ⬅ Back to Home
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
