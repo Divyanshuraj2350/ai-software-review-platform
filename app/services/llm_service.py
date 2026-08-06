@@ -3,91 +3,97 @@ import json
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
-# Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# Create model
 model = genai.GenerativeModel("gemini-3.5-flash")
 
 
-def get_ai_review(code: str):
-    """
-    Sends the uploaded code to Gemini and returns
-    a Python dictionary containing the review.
-    """
+def get_ai_review(code: str, language: str):
 
     prompt = f"""
-You are an expert software engineer and code reviewer.
+You are a Senior {language} Software Engineer with 15+ years of experience.
 
-Analyze the following Python code.
+Review this {language} code professionally.
 
 Return ONLY valid JSON.
 
-Do NOT use markdown.
-Do NOT wrap the JSON inside ```json.
-Do NOT write any explanation outside the JSON.
-
-Return exactly this structure:
+Return exactly this schema:
 
 {{
     "score": 8.5,
-    "summary": "Short summary of the code.",
-    "bugs": [
-        "Bug 1",
-        "Bug 2"
-    ],
-    "security": [
-        "Issue 1",
-        "Issue 2"
-    ],
-    "performance": [
-        "Improvement 1",
-        "Improvement 2"
-    ],
-    "quality": [
-        "Suggestion 1",
-        "Suggestion 2"
-    ],
-    "pep8": [
-        "Issue 1",
-        "Issue 2"
-    ]
+    "summary": "",
+    "strengths": [],
+    "weaknesses": [],
+    "suggestions": [],
+    "quality": {{
+        "readability": 8,
+        "performance": 8,
+        "security": 8,
+        "maintainability": 8
+    }},
+    "bugs": [],
+    "security": [],
+    "performance": [],
+    "pep8": []
 }}
 
-Python Code:
+Code:
 
 {code}
 """
 
     try:
+
         response = model.generate_content(prompt)
-        print("========== GEMINI RESPONSE ==========")
-        print(response.text)
-        print("=====================================")
 
-        text = response.text.strip()
+        text = getattr(response, "text", "")
 
-        # Remove markdown if Gemini returns it
+        print("\n========== GEMINI RESPONSE ==========")
+        print(text)
+        print("=====================================\n")
+
+        if not text:
+            raise Exception("Gemini returned an empty response.")
+
+        text = text.strip()
+
         if text.startswith("```json"):
-            text = text.replace("```json", "").replace("```", "").strip()
+            text = text[7:]
 
-        elif text.startswith("```"):
-            text = text.replace("```", "").strip()
+        if text.startswith("```"):
+            text = text[3:]
+
+        if text.endswith("```"):
+            text = text[:-3]
+
+        text = text.strip()
 
         return json.loads(text)
 
     except Exception as e:
 
+        print("\n========== AI REVIEW FAILED ==========")
+        print(type(e).__name__)
+        print(str(e))
+        print("======================================\n")
+
         return {
             "score": 0,
             "summary": "AI Review Failed",
+            "strengths": [],
+            "weaknesses": [],
+            "suggestions": [],
+            "quality": {
+                "readability": 0,
+                "performance": 0,
+                "security": 0,
+                "maintainability": 0
+            },
             "bugs": [],
             "security": [],
             "performance": [],
-            "quality": [],
             "pep8": [],
-            "error": str(e)
+            "error": f"{type(e).__name__}: {e}"
         }

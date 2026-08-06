@@ -4,11 +4,15 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>AI Software Review Platform</title>
 
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
 
 </head>
 
@@ -22,22 +26,66 @@
         Upload your Python file and receive an AI-powered code review.
     </p>
 
+    <!-- ================= Dashboard ================= -->
+
+    <div class="dashboard">
+
+        <div class="dashboard-card">
+
+            <h3>📂 Total Projects</h3>
+
+            <h2>{{ dashboard.total_projects }}</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h3>⭐ Average Score</h3>
+
+            <h2>{{ dashboard.average_score }}/10</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h3>🏆 Best Score</h3>
+
+            <h2>{{ dashboard.best_score }}/10</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <h3>📄 Files Reviewed</h3>
+
+            <h2>{{ dashboard.files_reviewed }}</h2>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Upload Form ================= -->
+
     <form id="uploadForm">
 
         <input
             type="file"
             id="codeFile"
-            name="file"
-            accept=".py"
+            name="files"
+            accept=".py,.zip"
+            multiple
             required>
 
         <button type="submit">
+
             Analyze Code
+
         </button>
 
     </form>
 
-    <!-- Loading Animation -->
+    <!-- Loading -->
+
     <div
         id="loading"
         class="loading"
@@ -50,12 +98,16 @@
     </div>
 
     <!-- AI Review -->
+
     <div id="message"></div>
 
     <!-- Buttons -->
-    <div class="button-group">
 
-        <!-- Download PDF -->
+    <div
+        style="
+        text-align:center;
+        margin-top:25px;">
+
         <a
             id="downloadBtn"
             href="/download-pdf"
@@ -66,12 +118,12 @@
 
         </a>
 
-        <!-- View History -->
         <a
             href="/history"
-            class="history-btn">
+            class="download-btn"
+            style="margin-left:15px;">
 
-            📚 View Review History
+            📚 Review History
 
         </a>
 

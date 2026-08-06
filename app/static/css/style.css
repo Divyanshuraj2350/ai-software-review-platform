@@ -265,3 +265,153 @@ button:hover{
     background:#c0392b;
 
 }
+/* ===========================
+   Compare Reviews
+=========================== */
+
+.compare-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 30px;
+    align-items: flex-start;
+}
+
+.compare-card {
+    flex: 1;
+    background: #1b2433;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+.compare-card h2 {
+    margin-bottom: 15px;
+    color: white;
+}
+
+.compare-card p {
+    color: #d1d5db;
+    line-height: 1.8;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.compare-card hr {
+    border: none;
+    border-top: 1px solid #4b5563;
+    margin: 18px 0;
+}
+
+.compare-card pre {
+
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    background: #0f172a;
+    color: #e5e7eb;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border: 1px solid #374151;
+}
+
+.compare-btn{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:10px 20px;
+
+    background:#8b5cf6;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+    font-weight:bold;
+
+}
+
+.compare-btn:hover{
+
+    background:#7c3aed;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:900px){
+
+    .container{
+
+        width:90%;
+
+    }
+
+    .compare-container{
+
+        flex-direction:column;
+
+    }
+
+}
+.quality-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.quality-table th,
+.quality-table td{
+
+    padding:12px;
+
+    border:1px solid #374151;
+
+    text-align:left;
+
+}
+
+.quality-table th{
+
+    background:#111827;
+
+}
+
+.history-card ul{
+
+    margin-left:20px;
+
+    line-height:1.8;
+
+}
+
+.history-card li{
+
+    color:#d1d5db;
+
+}

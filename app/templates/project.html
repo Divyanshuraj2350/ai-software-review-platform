@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Project Review</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📁 {{ project.project_name }}</h1>
+
+    <div class="history-card">
+
+        <p><strong>📅 Created:</strong> {{ project.created_at }}</p>
+
+        <hr>
+
+        <h2>📊 Project Statistics</h2>
+
+        <p><strong>Total Files:</strong> {{ project.summary.total_files }}</p>
+
+        <p><strong>Average Score:</strong> ⭐ {{ project.summary.average_score }}/10</p>
+
+        <p><strong>Total Bugs:</strong> 🐞 {{ project.summary.total_bugs }}</p>
+
+        <p><strong>Security Issues:</strong> 🔒 {{ project.summary.total_security }}</p>
+
+        <p><strong>Performance Issues:</strong> ⚡ {{ project.summary.total_performance }}</p>
+
+        <p><strong>PEP8 Issues:</strong> 📏 {{ project.summary.total_pep8 }}</p>
+
+    </div>
+
+    <br>
+
+    <div class="history-card">
+
+        <h2>🤖 AI Project Overview</h2>
+
+        <h3>❤️ Health Score: {{ project.project_ai.health_score }}/10</h3>
+
+        <hr>
+
+        <h3>🏗 Architecture</h3>
+
+        <p>{{ project.project_ai.architecture }}</p>
+
+        <hr>
+
+        <h3>🔒 Security</h3>
+
+        <p>{{ project.project_ai.security }}</p>
+
+        <hr>
+
+        <h3>⚡ Performance</h3>
+
+        <p>{{ project.project_ai.performance }}</p>
+
+        <hr>
+
+        <h3>🛠 Maintainability</h3>
+
+        <p>{{ project.project_ai.maintainability }}</p>
+
+        <hr>
+
+        <h3>🎯 Priority Improvements</h3>
+
+        <ul>
+
+            {% for item in project.project_ai.priorities %}
+
+            <li>{{ item }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <br>
+
+    <h2>📄 Reviewed Files</h2>
+
+    {% for item in project.reviews %}
+
+    <div class="history-card">
+
+        <h3>{{ item.filename }}</h3>
+
+        <p>⭐ {{ item.review.score }}/10</p>
+
+        <p>{{ item.review.summary }}</p>
+
+    </div>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/history" class="download-btn">
+
+        ⬅ Back
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

@@ -4,11 +4,15 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Review History</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Project History</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
 
 </head>
 
@@ -16,55 +20,117 @@
 
 <div class="container">
 
-    <h1>📄 Review History</h1>
+    <h1>📁 Project History</h1>
 
-    {% if history|length == 0 %}
+    {% if projects %}
+
+        {% for project in projects %}
 
         <div class="history-card">
 
-            <h2>No Reviews Yet</h2>
+            <h2>
 
-            <p>You haven't analyzed any Python files yet.</p>
+                📁 {{ project.project_name }}
+
+            </h2>
+
+            <p>
+
+                <strong>📅 Created:</strong>
+
+                {{ project.created_at }}
+
+            </p>
+
+            <p>
+
+                <strong>📂 Files Reviewed:</strong>
+
+                {{ project.summary.total_files }}
+
+            </p>
+
+            <p>
+
+                <strong>⭐ Average Score:</strong>
+
+                {{ project.summary.average_score }}/10
+
+            </p>
+
+            <p>
+
+                <strong>🐞 Bugs:</strong>
+
+                {{ project.summary.total_bugs }}
+
+                |
+
+                <strong>🔒 Security:</strong>
+
+                {{ project.summary.total_security }}
+
+                |
+
+                <strong>⚡ Performance:</strong>
+
+                {{ project.summary.total_performance }}
+
+            </p>
+
+            <p>
+
+                <strong>🤖 Architecture</strong>
+
+            </p>
+
+            <p>
+
+                {{ project.project_ai.architecture }}
+
+            </p>
+
+            <div class="button-group">
+
+                <a
+                    href="/project/{{ project.project_id }}"
+                    class="download-btn">
+
+                    👁 View Project
+
+                </a>
+
+                <a
+                    href="/delete/{{ project.project_id }}"
+                    class="delete-btn">
+
+                    🗑 Delete
+
+                </a>
+
+            </div>
 
         </div>
+
+        <br>
+
+        {% endfor %}
+
+    {% else %}
+
+        <h2 style="text-align:center;">
+
+            No Projects Found
+
+        </h2>
 
     {% endif %}
 
-    {% for item in history %}
-
-    <div class="history-card">
-
-        <h2>{{ item.filename }}</h2>
-
-        <p><strong>⭐ Score:</strong> {{ item.score }}/10</p>
-
-        <p><strong>📅 Date:</strong> {{ item.date }}</p>
-
-        <p>{{ item.summary }}</p>
-
-        <div class="history-actions">
-
-            <a
-                href="/delete/{{ loop.index0 }}"
-                class="delete-btn">
-
-                🗑 Delete
-
-            </a>
-
-        </div>
-
-    </div>
-
-    {% endfor %}
-
-    <br>
-
-    <div style="text-align:center;">
+    <div style="text-align:center; margin-top:30px;">
 
         <a href="/" class="download-btn">
 
-            ⬅ Back to Home
+            ⬅ Back Home
 
         </a>
 

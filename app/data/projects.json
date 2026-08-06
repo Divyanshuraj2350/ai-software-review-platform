@@ -1,0 +1,489 @@
+[
+    {
+        "project_id": "9acc5c78-6c31-455e-90a4-75b92648c824",
+        "project_name": "01. Find-S Algorithm Project",
+        "created_at": "03-08-2026 15:21",
+        "summary": {
+            "total_files": 1,
+            "average_score": 4.5,
+            "total_bugs": 1,
+            "total_security": 0,
+            "total_performance": 0,
+            "total_pep8": 4
+        },
+        "project_ai": {
+            "health_score": 4.5,
+            "architecture": "The script currently lacks structure, relying on a monolithic global execution flow characteristic of a raw Jupyter notebook export. It lacks modularity and separation of concerns; dataset ingestion, core algorithm execution, and output handling are tightly coupled. To improve this, the logic must be encapsulated into pure, testable functions.",
+            "security": "Security is minimally addressed. While using the standard 'csv' library prevents naive parsing issues, there is a total lack of input validation. The script is highly vulnerable to crashes or unexpected behaviors if provided with a malformed CSV, missing columns, or non-existent file paths.",
+            "performance": "For educational-scale datasets, performance is sufficient. However, loading the entire CSV into an in-memory list is inefficient for larger datasets. A generator-based streaming pipeline would optimize memory consumption. Additionally, redundant operations like manual file closing waste execution overhead.",
+            "maintainability": "Maintainability is poor. The code contains dead 'interactive' statements left over from a Jupyter notebook environment, hardcoded indexes, and non-descriptive single-letter variable names (like 'a'). Modern practices, such as PEP 8 naming and f-strings, are absent.",
+            "priorities": [
+                "Encapsulate the Find-S algorithm into a modular, reusable function with defined input/output types.",
+                "Fix the critical logical bug where the hypothesis is blindly initialized to the second row without verifying if it is a positive training instance.",
+                "Clean up Jupyter notebook remnants, redundant code, and the manual file close call inside the context manager.",
+                "Improve code readability and standards by refactoring variable names (e.g., 'a' to 'dataset') and applying PEP 8 formatting.",
+                "Introduce proper error handling for file I/O operations and parameterize the hardcoded file path."
+            ]
+        },
+        "project_risk": {
+            "risk_level": "Medium",
+            "production_ready": 45,
+            "estimated_fix_time": "1-2 hours",
+            "critical_issues": [
+                "Fragile hypothesis initialization: Assumes the first training instance is positive without validation, which can break the core Find-S logic.",
+                "Monolithic script structure: Code runs entirely in the global scope with hardcoded file paths, preventing reusability and testing."
+            ],
+            "quick_wins": [
+                "Remove the redundant 'csvFile.close()' statement since the file is opened using a 'with' context manager.",
+                "Clean up inactive Jupyter Notebook leftovers (such as standalone 'num_attributes' and 'a' statements).",
+                "Rename the generic variable 'a' to a descriptive name like 'dataset' or 'instances' to comply with PEP 8."
+            ]
+        },
+        "reviews": [
+            {
+                "filename": "01. Find-S Algorithm.py",
+                "language": "Python",
+                "review": {
+                    "score": 4.5,
+                    "summary": "This is a basic implementation of the Find-S algorithm exported directly from a Jupyter Notebook. It works for a specific, well-formed dataset but lacks modularity, proper error handling, and standard script structure. It contains redundant operations and Jupyter interactive remnants that have no effect in a standard Python execution environment.",
+                    "strengths": [
+                        "Correctly implements the core logic of the Find-S concept learning algorithm.",
+                        "Uses the built-in 'csv' module for safe parsing of comma-separated values."
+                    ],
+                    "weaknesses": [
+                        "Monolithic script structure with all execution in the global scope instead of functions or classes.",
+                        "Hypothesis initialization is fragile: it blindly assumes the second row (a[1]) is the first training instance and that it is positive.",
+                        "Contains redundant code (manual close inside a context manager).",
+                        "Contains interactive Jupyter notebook artifacts (bare variables evaluated on lines 35 and 40) that do nothing in a standard script.",
+                        "Hardcoded file paths and poor variable naming (e.g., using 'a' for the dataset array)."
+                    ],
+                    "suggestions": [
+                        "Encapsulate the Find-S algorithm in a reusable function, e.g., 'def find_s(filepath: str) -> list:'.",
+                        "Properly initialize the hypothesis using the first *positive* instance found in the dataset, rather than hardcoding index 1.",
+                        "Remove 'csvFile.close()' inside the 'with' block as the context manager automatically handles closing the file.",
+                        "Clean up interactive leftovers like standalone 'num_attributes' and 'a' statements.",
+                        "Use modern f-strings instead of '.format()' for string formatting."
+                    ],
+                    "quality": {
+                        "readability": 5,
+                        "performance": 6,
+                        "security": 7,
+                        "maintainability": 4
+                    },
+                    "bugs": [
+                        {
+                            "line": 45,
+                            "message": "Hypothesis is initialized using 'a[1]' without verifying if this example has a target value of 'yes'. Find-S requires initialization with the first positive training instance.",
+                            "severity": "medium"
+                        }
+                    ],
+                    "security": [],
+                    "performance": [],
+                    "pep8": [
+                        {
+                            "line": 13,
+                            "message": "Variable name 'a' is too short and non-descriptive. Consider 'dataset' or 'instances'."
+                        },
+                        {
+                            "line": 23,
+                            "message": "Redundant 'csvFile.close()' call inside a 'with' context manager block."
+                        },
+                        {
+                            "line": 35,
+                            "message": "Statement 'num_attributes' has no effect in a script execution context (Jupyter notebook artifact)."
+                        },
+                        {
+                            "line": 40,
+                            "message": "Statement 'a' has no effect in a script execution context (Jupyter notebook artifact)."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "project_id": "5ed7af80-37c0-40f0-8bf4-c3e66e64bdc9",
+        "project_name": "2385587-c044870f46cf33d4d4578f1a5092677f1a4577c8",
+        "created_at": "31-07-2026 18:12",
+        "summary": {
+            "total_files": 1,
+            "average_score": 0.0,
+            "total_bugs": 0,
+            "total_security": 0,
+            "total_performance": 0,
+            "total_pep8": 0
+        },
+        "project_ai": {
+            "health_score": 0,
+            "architecture": "Not Available",
+            "security": "Not Available",
+            "performance": "Not Available",
+            "maintainability": "Not Available",
+            "priorities": []
+        },
+        "project_risk": {
+            "risk_level": "Unknown",
+            "production_ready": 0,
+            "estimated_fix_time": "Unknown",
+            "critical_issues": [],
+            "quick_wins": []
+        },
+        "reviews": [
+            {
+                "filename": "test.html",
+                "language": "HTML",
+                "review": {
+                    "score": 0,
+                    "summary": "AI Review Failed",
+                    "strengths": [],
+                    "weaknesses": [],
+                    "suggestions": [],
+                    "quality": {
+                        "readability": 0,
+                        "performance": 0,
+                        "security": 0,
+                        "maintainability": 0
+                    },
+                    "bugs": [],
+                    "security": [],
+                    "performance": [],
+                    "pep8": [],
+                    "error": "ResourceExhausted: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 14.344275047s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-3.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 20\n}\n, retry_delay {\n  seconds: 14\n}\n]"
+                }
+            }
+        ]
+    },
+    {
+        "project_id": "01300b37-5b04-438d-977f-90db591f435c",
+        "project_name": "sample html file download Project",
+        "created_at": "31-07-2026 17:51",
+        "summary": {
+            "total_files": 1,
+            "average_score": 0.0,
+            "total_bugs": 0,
+            "total_security": 0,
+            "total_performance": 0,
+            "total_pep8": 0
+        },
+        "project_ai": {
+            "health_score": 0,
+            "architecture": "Not Available",
+            "security": "Not Available",
+            "performance": "Not Available",
+            "maintainability": "Not Available",
+            "priorities": []
+        },
+        "project_risk": {
+            "risk_level": "Unknown",
+            "production_ready": 0,
+            "estimated_fix_time": "Unknown",
+            "critical_issues": [],
+            "quick_wins": []
+        },
+        "reviews": [
+            {
+                "filename": "sample html file download.html",
+                "language": "HTML",
+                "review": {
+                    "score": 0,
+                    "summary": "AI Review Failed",
+                    "strengths": [],
+                    "weaknesses": [],
+                    "suggestions": [],
+                    "quality": {
+                        "readability": 0,
+                        "performance": 0,
+                        "security": 0,
+                        "maintainability": 0
+                    },
+                    "bugs": [],
+                    "security": [],
+                    "performance": [],
+                    "pep8": [],
+                    "error": "404 This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements."
+                }
+            }
+        ]
+    },
+    {
+        "project_id": "ac66a8b2-b072-4b71-9c1b-966ec7ffb128",
+        "project_name": "05. Naive Bayes Classifier(PIMA) Project",
+        "created_at": "28-07-2026 14:01",
+        "summary": {
+            "total_files": 1,
+            "average_score": 4.5,
+            "total_bugs": 4,
+            "total_security": 2,
+            "total_performance": 3,
+            "total_pep8": 3
+        },
+        "project_ai": {
+            "health_score": 4.5,
+            "architecture": "The current architecture is a procedural, single-use script lacking encapsulation and modularity. While it successfully separates basic statistical helper functions, it suffers from critical architectural flaws including severe data leakage (training on the raw dataset instead of the partitioned training set), hardcoded split boundaries that prevent reusability, and incorrect indentation of the core prediction logic. The system should be refactored into a reusable, object-oriented class structure featuring standard 'fit' and 'predict' pipelines.",
+            "security": "The script exhibits weak input validation and unsafe file handling. File opening is performed without context managers ('with' statements), creating risks of leaked file descriptors upon unhandled exceptions. Additionally, the ingestion pipeline immediately casts raw CSV strings to floats without try-except blocks, leaving the system highly vulnerable to application crashes (ValueError) when encountering missing, malformed, or dirty data.",
+            "performance": "Performance is highly unoptimized. It imports unused heavy packages ('numpy' and 'pandas') which increases startup overhead, performs an inefficient O(N^2) random pop operation in a while-loop for splitting data, and recalculates redundant nested list comprehensions during statistical profiling. Using pure Python loops for sequential mathematical operations further limits scalability to larger datasets.",
+            "maintainability": "The codebase is difficult to maintain and extend. It violates PEP 8 standards regarding naming conventions, spacing around operators, and blank lines. It also lacks docstrings, type hints, and comments. Spelled variables like 'seperated' add to the technical debt, and the heavy reliance on hardcoded index-based slicing makes the script highly fragile to schema changes.",
+            "priorities": [
+                "Fix the critical data leakage bug in section [12] by training the classifier on the partitioned 'trainset' rather than the raw 'data' array.",
+                "Correct the prediction-selection indentation in section [16] to prevent writing premature, incorrect classifications, and fix the 'mean' formula's denominator to divide by N instead of N-1.",
+                "Refactor the procedural script into a clean, reusable Gaussian Naive Bayes class containing standard 'fit' and 'predict' methods.",
+                "Introduce context managers ('with open(...)') for file operations and implement structured exception handling during float casting to gracefully handle dirty input data.",
+                "Optimize data operations by replacing the O(N^2) list-popping partition logic with dynamic, vectorized splits using 'numpy' or standard slicing."
+            ]
+        },
+        "project_risk": {
+            "risk_level": "High",
+            "production_ready": 25,
+            "estimated_fix_time": "4-6 hours",
+            "critical_issues": [
+                "Severe data leakage where the model trains on raw unsorted data indices rather than the designated train-test split.",
+                "Incorrect mathematical calculation of the mean dividing by N-1 instead of N, causing statistical distortion and potential division-by-zero errors.",
+                "Logical bug in prediction selection where argmax and appending logic are improperly indented inside the inner loop, leading to premature and incorrect class predictions."
+            ],
+            "quick_wins": [
+                "Correct the denominator in the mean function to use the full length of the input list.",
+                "Fix the indentation of the argmax prediction logic to execute outside the inner class loop.",
+                "Refactor file handling to use a 'with' context manager to prevent unclosed file descriptor leaks.",
+                "Remove unused imports (numpy and pandas) to decrease memory overhead and startup time."
+            ]
+        },
+        "reviews": [
+            {
+                "filename": "05. Naive Bayes Classifier(PIMA).py",
+                "review": {
+                    "score": 4.5,
+                    "summary": "This script implements a Naive Bayes classifier from scratch but contains severe logic, mathematical, and architectural flaws. Critical issues include incorrect calculations of basic statistical metrics, data leakage during model training, and incorrect indentation of prediction loops. The codebase also relies heavily on hardcoded values and is not structured for reusability or production use.",
+                    "strengths": [
+                        "Avoids heavy machine learning dependencies by implementing the Gaussian Naive Bayes probability density function using Python's standard libraries.",
+                        "Flows sequentially, mirroring the standard pipeline of loading data, splitting, preparing statistical profiles, and making inferences.",
+                        "Demonstrates a clean separation of statistical functions like mean and standard deviation from the main classification execution blocks."
+                    ],
+                    "weaknesses": [
+                        "Incorrect mathematical implementation of the mean, which divides the sum of elements by N-1 instead of N.",
+                        "Suffers from major data leakage: the training dataset is separated and trained using the original unshuffled array indices, meaning test features are leaked into training calculations.",
+                        "Employs highly restrictive, hardcoded sizes (e.g., 564 and 204) for data splitting and testing, preventing application to other datasets or different split ratios.",
+                        "Improper indentation of the argmax and prediction-appending logic, which runs inside the class-summary loop instead of after evaluating all classes."
+                    ],
+                    "suggestions": [
+                        "Encapsulate the Naive Bayes implementation into a standard class structure with clean 'fit' and 'predict' methods.",
+                        "Replace hardcoded split integers with dynamic proportions (e.g., 80/20 split based on the length of the input data).",
+                        "Adopt context managers ('with' statements) for file reading to guarantee proper closing of file descriptors.",
+                        "Utilize Python's built-in standard library tools like 'random.shuffle' or use 'numpy' (which is already imported but unused) for fast, vectorized numerical math."
+                    ],
+                    "quality": {
+                        "readability": 5,
+                        "performance": 4,
+                        "security": 6,
+                        "maintainability": 4
+                    },
+                    "bugs": [
+                        "The 'mean' function uses 'len(numbers) - 1' as its denominator, distorting the standard average calculation and raising a 'ZeroDivisionError' if the input has only 1 element.",
+                        "In section [12], the loop trains on the first 564 elements of the raw 'data' array instead of using the randomly sampled 'trainset' variable, defeating the purpose of the train-test split.",
+                        "In section [16], the prediction selection logic is aligned with the inner loop over class labels, causing incorrect predictions to be written prematurely before all classes are analyzed.",
+                        "In section [14], the dict comprehension recalculates the entire list comprehension 'zip(*instances)' redundantly inside a nested loop, causing unnecessary computational overhead."
+                    ],
+                    "security": [
+                        "The 'csv.reader' operates on a file opened directly via 'open()' without a context manager or safety checks, risking unclosed file handlers on unexpected errors.",
+                        "The parser assumes all column values can be immediately cast to float, which is prone to crashing (ValueError) on dirty data, missing columns, or headers."
+                    ],
+                    "performance": [
+                        "Unused imports ('numpy' and 'pandas') are declared at the top, increasing memory footprint and loading times unnecessarily.",
+                        "Iteratively popping items from random indices of a list ('test.pop(index)') inside a while-loop results in an inefficient O(N^2) complexity.",
+                        "Statistical methods are executed sequentially in pure Python loops, which will suffer from severe performance degradation on medium-to-large datasets."
+                    ],
+                    "pep8": [
+                        "The variable name 'seperated' is misspelled and should be 'separated'.",
+                        "Violates PEP 8 styling conventions regarding spacing around operators, blank lines between functions, and consistent snake_case variable naming.",
+                        "Lacks docstrings, type annotations, and descriptive comments to guide codebase maintainers."
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "project_id": "938b16ba-c46d-468e-b4a9-d0c57b925908",
+        "project_name": "05. Naive Bayes Classifier(PIMA) Project",
+        "created_at": "27-07-2026 13:04",
+        "summary": {
+            "total_files": 1,
+            "average_score": 4.5,
+            "total_bugs": 3,
+            "total_security": 1,
+            "total_performance": 3,
+            "total_pep8": 4
+        },
+        "project_ai": {
+            "health_score": 4.5,
+            "architecture": "The codebase attempts a custom from-scratch implementation of a Gaussian Naive Bayes classifier, but the architectural design is severely compromised. A failure to separate training and testing pipelines leads to severe data leakage (training on a raw data slice while ignoring the partitioned train set). Furthermore, critical bugs in the prediction loop indentation and incorrect mathematical formulations for statistical operations undermine the system's structural integrity.",
+            "security": "No high-severity security vulnerabilities (such as injection or malicious execution) are present. However, there is a clear resource management vulnerability: the CSV file is opened directly without a context manager or explicit close call, leading to unclosed file descriptors and potential resource exhaustion under load.",
+            "performance": "Performance is degraded by inefficient algorithmic choices and redundant computations. Specifically, the implementation uses list popping at random indices within a loop, resulting in O(N^2) time complexity. Additionally, unused heavy libraries like 'numpy' and 'pandas' are imported, which unnecessarily increases memory overhead and slows down script initialization.",
+            "maintainability": "Maintainability is poor due to non-standard code style and lack of structure. The script violates PEP 8 guidelines, featuring non-snake_case naming conventions (e.g., 'trainset', 'classvalue'), spelling mistakes ('seperated'), and inconsistent whitespace. The logic is written in a monolithic notebook-style format that lacks unit tests, modular encapsulation, and robust error handling.",
+            "priorities": [
+                "Fix the indentation bug in the prediction block to ensure class selection and results appending execute correctly outside the class loop.",
+                "Eliminate data leakage by training the classifier strictly on the partitioned 'trainset' instead of the raw data list.",
+                "Correct the 'mean' function formula to divide by the total count 'N' instead of 'N - 1' to ensure mathematical accuracy and prevent potential division-by-zero errors.",
+                "Refactor the file-loading block to use a robust 'with open(...) as f:' context manager to secure system resources.",
+                "Optimize the data split logic to eliminate O(N^2) list pop operations and remove unused 'numpy' and 'pandas' imports to improve execution speed and memory usage."
+            ]
+        },
+        "project_risk": {
+            "risk_level": "High",
+            "production_ready": 30,
+            "estimated_fix_time": "1-2 hours",
+            "critical_issues": [
+                "Data Leakage: The model trains on a raw slice of the dataset while testing on a randomized subset of the same data, causing overlapping train and test samples.",
+                "Mathematical Bug: The mean calculation divides by 'N - 1' instead of 'N', skewing the average value calculations and risking a ZeroDivisionError.",
+                "Broken Prediction Logic: Indentation errors in the prediction block cause class evaluation and result appending to execute prematurely inside the class loop."
+            ],
+            "quick_wins": [
+                "Use Python's 'with open(...) as f:' context manager to ensure proper file closure and prevent system resource leaks.",
+                "Remove unused heavy imports ('numpy' and 'pandas') to reduce memory and speed up script initialization.",
+                "Correct the training block to reference the actual 'trainset' list variable instead of the raw 'data' slice."
+            ]
+        },
+        "reviews": [
+            {
+                "filename": "05. Naive Bayes Classifier(PIMA).py",
+                "review": {
+                    "score": 4.5,
+                    "summary": "The code attempts to implement a Gaussian Naive Bayes classifier from scratch but suffers from critical mathematical errors, logic bugs, and data leakage. Specifically, the train/test split is bypassed during training, and the prediction loop contains indentation errors that corrupt the output predictions.",
+                    "strengths": [
+                        "Code is broken down into small, readable steps reflecting a notebook workflow.",
+                        "Implements the core Naive Bayes mathematical logic (Gaussian Probability Density) using standard libraries.",
+                        "Avoids complex external dependencies for the model training and prediction steps."
+                    ],
+                    "weaknesses": [
+                        "Data Leakage: The model trains on the first 564 records of the raw 'data' list, while the 'test' set is a randomized subset of the same list. This results in overlapping train/test data.",
+                        "Incorrect Math: The mean calculation divides by 'N - 1' instead of 'N', which is mathematically incorrect and leads to a ZeroDivisionError if a group has only one instance.",
+                        "Broken Prediction Logic: Indentation errors in the prediction block cause class selection and results appending to execute prematurely within the class loop.",
+                        "Unclosed File Resource: The CSV file is opened directly in the reader without a context manager, causing a potential file descriptor leak."
+                    ],
+                    "suggestions": [
+                        "Use Python's 'with open(...) as f:' context manager to ensure proper file closure.",
+                        "Correct the 'mean' function to divide by 'len(numbers)' instead of 'len(numbers) - 1'.",
+                        "Fix the prediction loop indentation so that 'bestlabel' evaluation and 'prediction.append()' occur outside the 'classvalue' loop.",
+                        "Train the model using the actual 'trainset' list instead of the raw 'data' slice.",
+                        "Remove unused heavy imports ('numpy' and 'pandas') to reduce memory and startup overhead.",
+                        "Utilize 'random.sample' or 'sklearn.model_selection.train_test_split' for an efficient and bug-free train/test split."
+                    ],
+                    "quality": {
+                        "readability": 6,
+                        "performance": 4,
+                        "security": 5,
+                        "maintainability": 5
+                    },
+                    "bugs": [
+                        "Indentation bug in prediction block: 'prediction.append(result)' is nested inside the 'for classvalue' loop, resulting in duplicate, intermediate predictions instead of one final prediction per test sample.",
+                        "Data Leakage: 'trainset' is populated with random elements but never used. The code actually splits training data via 'data[i]' for 'i' in range(564), while testing on 'test', causing identical samples to appear in both sets.",
+                        "Mathematical Bug: 'mean()' divides by 'len(numbers) - 1', distorting the actual average of the feature values."
+                    ],
+                    "security": [
+                        "Resource Leak: The 'open()' function is called without a matching 'close()' or 'with' block, keeping the system file descriptor open until garbage collection runs."
+                    ],
+                    "performance": [
+                        "Using 'test.pop(index)' in a loop is an O(N^2) operation because popping from random positions in a Python list requires shifting all subsequent elements in memory.",
+                        "Unused heavy imports ('numpy as np' and 'pandas as pd') slow down script initialization.",
+                        "Redundant loop evaluation in 'summaries[classvalue] = [...]' where 'zip(*instances)' is evaluated multiple times."
+                    ],
+                    "pep8": [
+                        "Variable and function names like 'trainset', 'classvalue', and 'classummary' do not follow snake_case styling (should be 'train_set', 'class_value', etc.).",
+                        "The variable 'seperated' contains a spelling typo (should be 'separated').",
+                        "Lack of consistent whitespaces around operators (e.g., '2*math.pow' and 'correct/204.0').",
+                        "Imports are not ordered/grouped according to PEP 8 standards."
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "project_id": "5e7e416a-e56e-4130-9754-37ad0b9c9d13",
+        "project_name": "05. Naive Bayes Classifier(PIMA) Project",
+        "created_at": "27-07-2026 12:26",
+        "summary": {
+            "total_files": 1,
+            "average_score": 4.5,
+            "total_bugs": 3,
+            "total_security": 2,
+            "total_performance": 3,
+            "total_pep8": 3
+        },
+        "project_ai": {
+            "health_score": 4.5,
+            "architecture": "The architecture attempts a modular, first-principles implementation of a Gaussian Naive Bayes classifier. However, it suffers from critical logical decoupling: the randomized train-test split is completely bypassed because the training summaries are built from the original ordered dataset rather than the partitioned training set. Additionally, the core execution pipeline is broken due to incorrect loop nesting and variable shadowing in the prediction phase, rendering the architectural flow dysfunctional.",
+            "security": "Security vulnerabilities exist in resource management and input validation. The script opens files without utilizing a context manager ('with' statement) or exception handling, risking unclosed file handles upon failure. Furthermore, there is zero input sanitization, making the application highly susceptible to crashes (such as 'ValueError') when encountering missing values, header rows, or malformed data in the input CSV.",
+            "performance": "Performance is highly unoptimized. Although high-performance libraries like 'numpy' and 'pandas' are imported, they remain unused, resulting in unnecessary memory overhead. The script relies on inefficient native Python operations, such as performing an O(N^2) 'test.pop(index)' inside a loop for dataset splitting, and running redundant nested iterations over 'zip(*instances)'.",
+            "maintainability": "Maintainability is low due to severe technical debt and poor coding practices. The codebase violates PEP 8 clean-code guidelines through unused imports, spelling errors in key variables (e.g., 'seperated', 'classummary'), and the use of hardcoded magic numbers (564 and 204) for dataset dimensions instead of dynamic array sizing. Combined with variable shadowing, these factors make the code difficult to debug, test, and scale.",
+            "priorities": [
+                "Fix the mathematical error in the mean calculation by dividing the sum by N instead of N-1, which also prevents ZeroDivisionError.",
+                "Resolve the critical variable shadowing and nesting error in the prediction block's argmax loop to restore correct classification behavior.",
+                "Correct the data leakage bug by ensuring the training summaries are populated using 'trainset' instead of the original raw 'data' list.",
+                "Refactor file I/O to use the 'with open(...) as' context manager and implement basic input validation for parsing floats.",
+                "Leverage the imported 'numpy' library to vectorize statistical calculations and replace inefficient operations like 'list.pop' in loops."
+            ]
+        },
+        "project_risk": {
+            "risk_level": "High",
+            "production_ready": 15,
+            "estimated_fix_time": "2-3 hours",
+            "critical_issues": [
+                "Mathematical inaccuracy in the mean calculation (dividing by N-1 instead of N), which corrupts statistical calculations and can cause ZeroDivisionError.",
+                "Data leakage and logical decoupling during training where summaries are built from the original ordered dataset instead of the randomized trainset.",
+                "Severe variable shadowing and incorrect loop nesting in the prediction block where 'classvalue' is used as its own iterator, corrupting the classification logic."
+            ],
+            "quick_wins": [
+                "Vectorize mathematical helper functions using the already imported 'numpy' library to resolve calculation errors and improve speed.",
+                "Refactor file handling to use the 'with open(...) as' context manager to guarantee proper closing of file resources.",
+                "Clean up PEP 8 violations by removing unused imports (numpy, pandas) and correcting variable spelling errors."
+            ]
+        },
+        "reviews": [
+            {
+                "filename": "05. Naive Bayes Classifier(PIMA).py",
+                "review": {
+                    "score": 4.5,
+                    "summary": "The code attempts to implement a Gaussian Naive Bayes classifier from scratch but contains severe logic bugs, mathematical errors, and inefficient structures. Key issues include incorrect statistical formulas, a broken training-test data separation, and an improperly nested prediction loop that shadows its own loop variables.",
+                    "strengths": [
+                        "Clear intent to implement a machine learning algorithm from first principles without relying on high-level ML frameworks.",
+                        "Demonstrates basic modularization by dividing calculations into helper functions like mean and stddev.",
+                        "Attempts to implement a randomized train-test split for model validation."
+                    ],
+                    "weaknesses": [
+                        "Mathematical inaccuracy in the mean calculation, which incorrectly divides the sum by N-1 instead of N.",
+                        "Data leakage and logical decoupling: the training set is randomized, but the separation process reads from the original ordered dataset.",
+                        "Severe variable shadowing and incorrect indentation in the prediction block, causing incorrect classification behavior."
+                    ],
+                    "suggestions": [
+                        "Use the imported 'numpy' library to vectorize the mathematical operations, which will improve both speed and code readability.",
+                        "Refactor file handling to use the 'with open(...) as' context manager to ensure system resources are freed properly.",
+                        "Fix the indexing logic so that the training summaries are built directly from the randomized 'trainset' rather than 'data'."
+                    ],
+                    "quality": {
+                        "readability": 5,
+                        "performance": 3,
+                        "security": 6,
+                        "maintainability": 4
+                    },
+                    "bugs": [
+                        "The mean function calculates 'sum(numbers) / float(len(numbers) - 1)', which is mathematically incorrect and will cause a ZeroDivisionError if the list contains only one element.",
+                        "In section [12], the code populates the 'seperated' dictionary using 'data[i]' instead of 'trainset[i]', rendering the randomized split in step [10] useless.",
+                        "In section [16], the argmax loop for determining the 'bestlabel' is nested inside the 'classvalue' loop and uses 'classvalue' as its own iterator, corrupting the outer loop state."
+                    ],
+                    "security": [
+                        "The file is opened using 'open()' without a context manager or 'try...finally' block, leading to an unclosed file handle if an exception occurs during reading.",
+                        "Lack of input sanitization: the script assumes all values can be cleanly cast to float, which will cause a ValueError if there are missing values or header rows in the CSV."
+                    ],
+                    "performance": [
+                        "The 'numpy' and 'pandas' libraries are imported but never used, unnecessarily increasing the memory footprint.",
+                        "Using 'test.pop(index)' inside a loop is inefficient (O(N^2)) for creating the train/test splits. Using slicing or numpy shuffling is much faster.",
+                        "The 'summaries' generation redundantely iterates through 'zip(*instances)' multiple times in a nested comprehension."
+                    ],
+                    "pep8": [
+                        "Variable names contain spelling errors (e.g., 'seperated' instead of 'separated', 'classummary' instead of 'class_summary').",
+                        "Presence of unused imports ('numpy', 'pandas') violates PEP 8 clean import guidelines.",
+                        "Uses hardcoded magic numbers (564 and 204) for dataset sizes instead of dynamically reading the length of the lists."
+                    ]
+                }
+            }
+        ]
+    }
+]

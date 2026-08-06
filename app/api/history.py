@@ -1,7 +1,11 @@
 from fastapi import APIRouter, Request
+from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from app.services.history_service import get_history, delete_review
+from app.services.project_history_service import (
+    get_projects,
+    delete_project
+)
 
 router = APIRouter()
 
@@ -11,22 +15,21 @@ templates = Jinja2Templates(directory="app/templates")
 @router.get("/history")
 async def history(request: Request):
 
-    history_data = get_history()
+    projects = get_projects()
 
     return templates.TemplateResponse(
         request=request,
         name="history.html",
         context={
-            "history": history_data
+            "projects": projects
         }
     )
 
-@router.get("/delete/{index}")
-async def delete(index: int):
 
-    delete_review(index)
+@router.get("/delete/{project_id}")
+async def delete(project_id: str):
 
-    from fastapi.responses import RedirectResponse
+    delete_project(project_id)
 
     return RedirectResponse(
         url="/history",

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compare Reviews</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⚖️ Compare Reviews</h1>
+
+    <div class="compare-container">
+
+        <div class="history-card">
+
+            <h2>🏆 Comparison Result</h2>
+
+            <p><strong>Winner:</strong> {{ comparison.winner }}</p>
+
+            <p><strong>Score Difference:</strong>
+                {{ comparison.difference }}
+            </p>
+
+        </div>
+
+        <div class="compare-card">
+
+            <h2>{{ comparison.review1.filename }}</h2>
+
+            <p><strong>⭐ Score:</strong>
+                {{ comparison.review1.review.score }}/10
+            </p>
+
+            <p><strong>📅 Date:</strong>
+                {{ comparison.review1.date }}
+            </p>
+
+            <hr>
+
+            <pre>{{ comparison.review1.review.summary }}</pre>
+
+        </div>
+
+        <div class="compare-card">
+
+            <h2>{{ comparison.review2.filename }}</h2>
+
+            <p><strong>⭐ Score:</strong>
+                {{ comparison.review2.review.score }}/10
+            </p>
+
+            <p><strong>📅 Date:</strong>
+                {{ comparison.review2.date }}
+            </p>
+
+            <hr>
+
+            <pre>{{ comparison.review2.review.summary }}</pre>
+
+        </div>
+
+    </div>
+
+    <div style="margin-top:40px;text-align:center;">
+
+        <a href="/history" class="download-btn">
+            ⬅ Back to History
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

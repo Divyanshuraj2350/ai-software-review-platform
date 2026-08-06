@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Project Review</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📁 {{ project.project_name }}</h1>
+
+    <p style="text-align:center;">
+        Reviewed on {{ project.created_at }}
+    </p>
+
+    <!-- ================= PROJECT SUMMARY ================= -->
+
+    <div class="history-card">
+
+        <h2>📊 Project Summary</h2>
+
+        <p><strong>Total Files:</strong> {{ project.summary.total_files }}</p>
+
+        <p><strong>Average Score:</strong> ⭐ {{ project.summary.average_score }}/10</p>
+
+        <p><strong>Total Bugs:</strong> 🐞 {{ project.summary.total_bugs }}</p>
+
+        <p><strong>Security Issues:</strong> 🔒 {{ project.summary.total_security }}</p>
+
+        <p><strong>Performance Issues:</strong> ⚡ {{ project.summary.total_performance }}</p>
+
+        <p><strong>PEP8 Issues:</strong> 📏 {{ project.summary.total_pep8 }}</p>
+
+    </div>
+
+    <br>
+
+    <!-- ================= AI PROJECT OVERVIEW ================= -->
+
+    <div class="history-card">
+
+        <h2>🤖 AI Project Overview</h2>
+
+        <h3>Health Score</h3>
+
+        <p>
+            ⭐ {{ project.project_ai.health_score }}/10
+        </p>
+
+        <h3>Architecture</h3>
+
+        <p>{{ project.project_ai.architecture }}</p>
+
+        <h3>Security</h3>
+
+        <p>{{ project.project_ai.security }}</p>
+
+        <h3>Performance</h3>
+
+        <p>{{ project.project_ai.performance }}</p>
+
+        <h3>Maintainability</h3>
+
+        <p>{{ project.project_ai.maintainability }}</p>
+
+        <h3>Top Priorities</h3>
+
+        <ul>
+
+        {% for item in project.project_ai.priorities %}
+
+            <li>{{ item }}</li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <br>
+
+    <!-- ================= FILE REVIEWS ================= -->
+
+    <h2 style="text-align:center;">
+        📄 Individual File Reviews
+    </h2>
+
+    {% for file in project.reviews %}
+
+    <div class="history-card">
+
+        <h2>{{ file.filename }}</h2>
+
+        <h3>⭐ {{ file.review.score }}/10</h3>
+
+        <hr>
+
+        <h3>Summary</h3>
+
+        <p>{{ file.review.summary }}</p>
+
+        <hr>
+
+        <h3>Strengths</h3>
+
+        <ul>
+
+        {% for item in file.review.strengths %}
+
+            <li>{{ item }}</li>
+
+        {% endfor %}
+
+        </ul>
+
+        <hr>
+
+        <h3>Weaknesses</h3>
+
+        <ul>
+
+        {% for item in file.review.weaknesses %}
+
+            <li>{{ item }}</li>
+
+        {% endfor %}
+
+        </ul>
+
+        <hr>
+
+        <h3>Suggestions</h3>
+
+        <ul>
+
+        {% for item in file.review.suggestions %}
+
+            <li>{{ item }}</li>
+
+        {% endfor %}
+
+        </ul>
+
+        <details>
+
+            <summary>
+
+                <strong>Show Technical Details</strong>
+
+            </summary>
+
+            <h3>Quality Metrics</h3>
+
+            <table class="quality-table">
+
+                <tr>
+
+                    <th>Readability</th>
+
+                    <td>{{ file.review.quality.readability }}/10</td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Performance</th>
+
+                    <td>{{ file.review.quality.performance }}/10</td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Security</th>
+
+                    <td>{{ file.review.quality.security }}/10</td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Maintainability</th>
+
+                    <td>{{ file.review.quality.maintainability }}/10</td>
+
+                </tr>
+
+            </table>
+
+            <h3>🐞 Bugs</h3>
+
+            <ul>
+
+            {% for item in file.review.bugs %}
+
+                <li>{{ item }}</li>
+
+            {% endfor %}
+
+            </ul>
+
+            <h3>🔒 Security Issues</h3>
+
+            <ul>
+
+            {% for item in file.review.security %}
+
+                <li>{{ item }}</li>
+
+            {% endfor %}
+
+            </ul>
+
+            <h3>⚡ Performance Improvements</h3>
+
+            <ul>
+
+            {% for item in file.review.performance %}
+
+                <li>{{ item }}</li>
+
+            {% endfor %}
+
+            </ul>
+
+            <h3>📏 PEP8 Issues</h3>
+
+            <ul>
+
+            {% for item in file.review.pep8 %}
+
+                <li>{{ item }}</li>
+
+            {% endfor %}
+
+            </ul>
+
+        </details>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+    <div style="text-align:center; margin-top:30px;">
+
+        <a href="/history" class="download-btn">
+
+            ⬅ Back to History
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

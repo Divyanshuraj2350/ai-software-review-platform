@@ -15,9 +15,8 @@ def save_review(filename, review):
 
     history.insert(0, {
         "filename": filename,
-        "score": review["score"],
-        "summary": review["summary"],
-        "date": datetime.now().strftime("%d-%m-%Y %H:%M")
+        "date": datetime.now().strftime("%d-%m-%Y %H:%M"),
+        "review": review
     })
 
     with open(HISTORY_FILE, "w") as f:
@@ -32,12 +31,24 @@ def get_history():
     with open(HISTORY_FILE, "r") as f:
         return json.load(f)
 
+
+def get_review(index: int):
+
+    history = get_history()
+
+    if 0 <= index < len(history):
+        return history[index]
+
+    return None
+
+
 def delete_review(index: int):
 
     history = get_history()
 
     if 0 <= index < len(history):
+
         history.pop(index)
 
-        with open(HISTORY_FILE, "w") as file:
-            json.dump(history, file, indent=4)
+        with open(HISTORY_FILE, "w") as f:
+            json.dump(history, f, indent=4)
