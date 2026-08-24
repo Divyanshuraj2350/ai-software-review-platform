@@ -1,4 +1,4 @@
-from app.services.llm_service import model
+from app.services.llm_service import client
 import json
 
 
@@ -41,7 +41,10 @@ Return exactly:
 
     try:
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt
+        )
 
         text = response.text.strip()
 

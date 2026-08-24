@@ -1,13 +1,154 @@
 import os
 import json
-import google.generativeai as genai
+
+from google import genai
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-model = genai.GenerativeModel("gemini-3.5-flash")
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+
+
+REVIEW_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "score": {
+            "type": "number"
+        },
+        "summary": {
+            "type": "string"
+        },
+        "strengths": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "weaknesses": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "suggestions": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "quality": {
+            "type": "object",
+            "properties": {
+                "readability": {
+                    "type": "number"
+                },
+                "performance": {
+                    "type": "number"
+                },
+                "security": {
+                    "type": "number"
+                },
+                "maintainability": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "readability",
+                "performance",
+                "security",
+                "maintainability"
+            ]
+        },
+        "bugs": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "line": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "line",
+                    "message"
+                ]
+            }
+        },
+        "security": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "line": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "line",
+                    "message"
+                ]
+            }
+        },
+        "performance": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "line": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "line",
+                    "message"
+                ]
+            }
+        },
+        "pep8": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "line": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "line",
+                    "message"
+                ]
+            }
+        }
+    },
+    "required": [
+        "score",
+        "summary",
+        "strengths",
+        "weaknesses",
+        "suggestions",
+        "quality",
+        "bugs",
+        "security",
+        "performance",
+        "pep8"
+    ]
+}
 
 
 def get_ai_review(code: str, language: str):
@@ -15,29 +156,22 @@ def get_ai_review(code: str, language: str):
     prompt = f"""
 You are a Senior {language} Software Engineer with 15+ years of experience.
 
-Review this {language} code professionally.
+Review the following {language} code professionally.
 
-Return ONLY valid JSON.
+Analyze:
 
-Return exactly this schema:
+- overall code quality
+- readability
+- performance
+- security
+- maintainability
+- bugs
+- security vulnerabilities
+- performance problems
+- PEP8/style problems
+- concrete improvement suggestions
 
-{{
-    "score": 8.5,
-    "summary": "",
-    "strengths": [],
-    "weaknesses": [],
-    "suggestions": [],
-    "quality": {{
-        "readability": 8,
-        "performance": 8,
-        "security": 8,
-        "maintainability": 8
-    }},
-    "bugs": [],
-    "security": [],
-    "performance": [],
-    "pep8": []
-}}
+Return the review using the requested JSON structure.
 
 Code:
 
@@ -46,9 +180,16 @@ Code:
 
     try:
 
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-3.5-flash",
+            contents=prompt,
+            config={
+                "response_mime_type": "application/json",
+                "response_json_schema": REVIEW_SCHEMA
+            }
+        )
 
-        text = getattr(response, "text", "")
+        text = response.text.strip()
 
         print("\n========== GEMINI RESPONSE ==========")
         print(text)
@@ -56,19 +197,6 @@ Code:
 
         if not text:
             raise Exception("Gemini returned an empty response.")
-
-        text = text.strip()
-
-        if text.startswith("```json"):
-            text = text[7:]
-
-        if text.startswith("```"):
-            text = text[3:]
-
-        if text.endswith("```"):
-            text = text[:-3]
-
-        text = text.strip()
 
         return json.loads(text)
 

@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Project History</title>
+    <title>Review History</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/dashboard.css">
@@ -18,123 +18,259 @@
 
 <body>
 
-<div class="container">
+<div class="history-page">
 
-    <h1>📁 Project History</h1>
+    <!-- ================= HEADER ================= -->
+
+    <header class="history-header">
+
+        <div>
+
+            <div class="history-eyebrow">
+                REVIEW HISTORY
+            </div>
+
+            <h1>Your code reviews</h1>
+
+            <p>
+                Review your previous projects, scores and detected issues.
+            </p>
+
+        </div>
+
+        <a
+            href="/"
+            class="history-back-btn">
+
+            ← Back to Review
+
+        </a>
+
+    </header>
+
+
+    <!-- ================= PROJECT LIST ================= -->
 
     {% if projects %}
 
+    <div class="history-list">
+
         {% for project in projects %}
 
-        <div class="history-card">
+        <article class="history-project-card">
 
-            <h2>
+            <!-- CARD HEADER -->
 
-                📁 {{ project.project_name }}
+            <div class="history-card-header">
 
-            </h2>
+                <div class="project-title-area">
 
-            <p>
+                    <div class="project-icon">
+                        &lt;/&gt;
+                    </div>
 
-                <strong>📅 Created:</strong>
+                    <div>
 
-                {{ project.created_at }}
+                        <h2>
+                            {{ project.project_name }}
+                        </h2>
 
-            </p>
+                        <div class="project-date">
 
-            <p>
+                            Reviewed
+                            {{ project.created_at }}
 
-                <strong>📂 Files Reviewed:</strong>
+                        </div>
 
-                {{ project.summary.total_files }}
+                    </div>
 
-            </p>
+                </div>
 
-            <p>
 
-                <strong>⭐ Average Score:</strong>
+                <!-- SCORE -->
 
-                {{ project.summary.average_score }}/10
+                <div class="project-score">
 
-            </p>
+                    <span class="score-value">
+                        {{ project.summary.average_score }}
+                    </span>
 
-            <p>
+                    <span class="score-total">
+                        /10
+                    </span>
 
-                <strong>🐞 Bugs:</strong>
+                </div>
 
-                {{ project.summary.total_bugs }}
+            </div>
 
-                |
 
-                <strong>🔒 Security:</strong>
+            <!-- ================= STATS ================= -->
 
-                {{ project.summary.total_security }}
+            <div class="history-stats">
 
-                |
+                <div class="history-stat">
 
-                <strong>⚡ Performance:</strong>
+                    <div class="stat-icon">
+                        📄
+                    </div>
 
-                {{ project.summary.total_performance }}
+                    <div>
 
-            </p>
+                        <span class="stat-label">
+                            Files
+                        </span>
 
-            <p>
+                        <strong>
+                            {{ project.summary.total_files }}
+                        </strong>
 
-                <strong>🤖 Architecture</strong>
+                    </div>
 
-            </p>
+                </div>
 
-            <p>
 
-                {{ project.project_ai.architecture }}
+                <div class="history-stat">
 
-            </p>
+                    <div class="stat-icon bug">
+                        ⚠
+                    </div>
 
-            <div class="button-group">
+                    <div>
+
+                        <span class="stat-label">
+                            Bugs
+                        </span>
+
+                        <strong>
+                            {{ project.summary.total_bugs }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="history-stat">
+
+                    <div class="stat-icon security">
+                        ◇
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Security
+                        </span>
+
+                        <strong>
+                            {{ project.summary.total_security }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="history-stat">
+
+                    <div class="stat-icon performance">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Performance
+                        </span>
+
+                        <strong>
+                            {{ project.summary.total_performance }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= AI INSIGHT ================= -->
+
+            <div class="architecture-section">
+
+                <div class="architecture-title">
+                    AI PROJECT INSIGHT
+                </div>
+
+                <p>
+
+                    {{ project.project_ai.architecture }}
+
+                </p>
+
+            </div>
+
+
+            <!-- ================= ACTIONS ================= -->
+
+            <div class="history-actions">
 
                 <a
                     href="/project/{{ project.project_id }}"
-                    class="download-btn">
+                    class="history-view-btn">
 
-                    👁 View Project
+                    <span>→</span>
+
+                    View review
 
                 </a>
 
+
                 <a
                     href="/delete/{{ project.project_id }}"
-                    class="delete-btn">
+                    class="history-delete-btn">
 
-                    🗑 Delete
+                    Delete
 
                 </a>
 
             </div>
 
-        </div>
-
-        <br>
+        </article>
 
         {% endfor %}
 
+    </div>
+
     {% else %}
 
-        <h2 style="text-align:center;">
+    <!-- ================= EMPTY STATE ================= -->
 
-            No Projects Found
+    <div class="history-empty">
 
+        <div class="empty-icon">
+            &lt;/&gt;
+        </div>
+
+        <h2>
+            No reviews yet
         </h2>
 
-    {% endif %}
+        <p>
+            Upload your first project to start reviewing your code.
+        </p>
 
-    <div style="text-align:center; margin-top:30px;">
+        <a
+            href="/"
+            class="history-view-btn">
 
-        <a href="/" class="download-btn">
-
-            ⬅ Back Home
+            Start a review →
 
         </a>
 
     </div>
+
+    {% endif %}
 
 </div>
 

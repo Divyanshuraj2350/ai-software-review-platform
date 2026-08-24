@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>Project Review</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>{{ project.project_name }} — Project Review</title>
 
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/dashboard.css">
@@ -13,107 +19,424 @@
 
 <body>
 
-<div class="container">
+<main class="project-page">
 
-    <h1>📁 {{ project.project_name }}</h1>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <div class="history-card">
+    <header class="project-header">
 
-        <p><strong>📅 Created:</strong> {{ project.created_at }}</p>
+        <div>
 
-        <hr>
+            <div class="project-eyebrow">
+                PROJECT REVIEW
+            </div>
 
-        <h2>📊 Project Statistics</h2>
+            <h1>
+                {{ project.project_name }}
+            </h1>
 
-        <p><strong>Total Files:</strong> {{ project.summary.total_files }}</p>
+            <p class="project-date">
+                Reviewed {{ project.created_at }}
+            </p>
 
-        <p><strong>Average Score:</strong> ⭐ {{ project.summary.average_score }}/10</p>
+        </div>
 
-        <p><strong>Total Bugs:</strong> 🐞 {{ project.summary.total_bugs }}</p>
+        <a
+            href="/history"
+            class="project-back-btn">
 
-        <p><strong>Security Issues:</strong> 🔒 {{ project.summary.total_security }}</p>
+            ← History
 
-        <p><strong>Performance Issues:</strong> ⚡ {{ project.summary.total_performance }}</p>
+        </a>
 
-        <p><strong>PEP8 Issues:</strong> 📏 {{ project.summary.total_pep8 }}</p>
+    </header>
 
-    </div>
 
-    <br>
+    <!-- =====================================================
+         PROJECT HEALTH
+    ====================================================== -->
 
-    <div class="history-card">
+    <section class="project-health">
 
-        <h2>🤖 AI Project Overview</h2>
+        <div class="health-main">
 
-        <h3>❤️ Health Score: {{ project.project_ai.health_score }}/10</h3>
+            <div class="health-label">
+                PROJECT HEALTH
+            </div>
 
-        <hr>
+            <div class="health-score">
 
-        <h3>🏗 Architecture</h3>
+                {{ project.project_ai.health_score }}
 
-        <p>{{ project.project_ai.architecture }}</p>
+                <span>/10</span>
 
-        <hr>
+            </div>
 
-        <h3>🔒 Security</h3>
+            <p>
+                Overall assessment based on the
+                analyzed project.
+            </p>
 
-        <p>{{ project.project_ai.security }}</p>
+        </div>
 
-        <hr>
 
-        <h3>⚡ Performance</h3>
+        <div class="project-stats">
 
-        <p>{{ project.project_ai.performance }}</p>
+            <div class="project-stat">
 
-        <hr>
+                <span class="project-stat-icon">
+                    📄
+                </span>
 
-        <h3>🛠 Maintainability</h3>
+                <div>
 
-        <p>{{ project.project_ai.maintainability }}</p>
+                    <span>Files</span>
 
-        <hr>
+                    <strong>
+                        {{ project.summary.total_files }}
+                    </strong>
 
-        <h3>🎯 Priority Improvements</h3>
+                </div>
 
-        <ul>
+            </div>
+
+
+            <div class="project-stat">
+
+                <span class="project-stat-icon">
+                    ⭐
+                </span>
+
+                <div>
+
+                    <span>Average Score</span>
+
+                    <strong>
+                        {{ project.summary.average_score }}/10
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-stat">
+
+                <span class="project-stat-icon">
+                    🐞
+                </span>
+
+                <div>
+
+                    <span>Bugs</span>
+
+                    <strong>
+                        {{ project.summary.total_bugs }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-stat">
+
+                <span class="project-stat-icon">
+                    🔒
+                </span>
+
+                <div>
+
+                    <span>Security</span>
+
+                    <strong>
+                        {{ project.summary.total_security }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-stat">
+
+                <span class="project-stat-icon">
+                    ⚡
+                </span>
+
+                <div>
+
+                    <span>Performance</span>
+
+                    <strong>
+                        {{ project.summary.total_performance }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         AI PROJECT ANALYSIS
+    ====================================================== -->
+
+    <section class="project-section">
+
+        <div class="section-heading">
+
+            <div class="section-eyebrow">
+                AI ANALYSIS
+            </div>
+
+            <h2>
+                Project overview
+            </h2>
+
+            <p>
+                AI-generated analysis of the project's
+                architecture, security and maintainability.
+            </p>
+
+        </div>
+
+
+        <!-- Architecture -->
+
+        <article class="analysis-card architecture-card">
+
+            <div class="analysis-icon">
+                ◇
+            </div>
+
+            <div>
+
+                <div class="analysis-label">
+                    ARCHITECTURE
+                </div>
+
+                <p>
+                    {{ project.project_ai.architecture }}
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- Analysis Grid -->
+
+        <div class="analysis-grid">
+
+            <article class="analysis-card">
+
+                <div class="analysis-icon">
+                    🔒
+                </div>
+
+                <div>
+
+                    <div class="analysis-label">
+                        SECURITY
+                    </div>
+
+                    <p>
+                        {{ project.project_ai.security }}
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="analysis-card">
+
+                <div class="analysis-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <div class="analysis-label">
+                        PERFORMANCE
+                    </div>
+
+                    <p>
+                        {{ project.project_ai.performance }}
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="analysis-card">
+
+                <div class="analysis-icon">
+                    🛠
+                </div>
+
+                <div>
+
+                    <div class="analysis-label">
+                        MAINTAINABILITY
+                    </div>
+
+                    <p>
+                        {{ project.project_ai.maintainability }}
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PRIORITIES
+    ====================================================== -->
+
+    <section class="project-section">
+
+        <div class="section-heading">
+
+            <div class="section-eyebrow">
+                NEXT STEPS
+            </div>
+
+            <h2>
+                Priority improvements
+            </h2>
+
+        </div>
+
+
+        <div class="priority-list">
 
             {% for item in project.project_ai.priorities %}
 
-            <li>{{ item }}</li>
+            <div class="priority-item">
+
+                <span class="priority-number">
+                    {{ "%02d" | format(loop.index) }}
+                </span>
+
+                <p>
+                    {{ item }}
+                </p>
+
+            </div>
 
             {% endfor %}
 
-        </ul>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REVIEWED FILES
+    ====================================================== -->
+
+    <section class="project-section">
+
+        <div class="section-heading">
+
+            <div class="section-eyebrow">
+                SOURCE ANALYSIS
+            </div>
+
+            <h2>
+                Reviewed files
+            </h2>
+
+            <p>
+                Individual AI reviews generated for this project.
+            </p>
+
+        </div>
+
+
+        <div class="reviewed-files">
+
+            {% for item in project.reviews %}
+
+            <article class="reviewed-file">
+
+                <div class="file-main">
+
+                    <div class="file-icon">
+                        &lt;/&gt;
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ item.filename }}
+                        </h3>
+
+                        <span>
+                            {{ item.language }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="file-score">
+
+                    <strong>
+                        {{ item.review.score }}
+                    </strong>
+
+                    <span>
+                        /10
+                    </span>
+
+                </div>
+
+
+                <p class="file-summary">
+                    {{ item.review.summary }}
+                </p>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER ACTION
+    ====================================================== -->
+
+    <div class="project-footer">
+
+        <a
+            href="/history"
+            class="project-back-btn">
+
+            ← Back to History
+
+        </a>
 
     </div>
 
-    <br>
+</main>
 
-    <h2>📄 Reviewed Files</h2>
-
-    {% for item in project.reviews %}
-
-    <div class="history-card">
-
-        <h3>{{ item.filename }}</h3>
-
-        <p>⭐ {{ item.review.score }}/10</p>
-
-        <p>{{ item.review.summary }}</p>
-
-    </div>
-
-    {% endfor %}
-
-    <br>
-
-    <a href="/history" class="download-btn">
-
-        ⬅ Back
-
-    </a>
-
-</div>
 
 </body>
 

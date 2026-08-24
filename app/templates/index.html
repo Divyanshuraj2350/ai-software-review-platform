@@ -5,8 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>AI Software Review Platform</title>
 
@@ -18,118 +19,660 @@
 
 <body>
 
-<div class="container">
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-    <h1>AI Software Review Platform</h1>
+<div class="ambient-background">
 
-    <p class="subtitle">
-        Upload your Python file and receive an AI-powered code review.
-    </p>
-
-    <!-- ================= Dashboard ================= -->
-
-    <div class="dashboard">
-
-        <div class="dashboard-card">
-
-            <h3>📂 Total Projects</h3>
-
-            <h2>{{ dashboard.total_projects }}</h2>
-
-        </div>
-
-        <div class="dashboard-card">
-
-            <h3>⭐ Average Score</h3>
-
-            <h2>{{ dashboard.average_score }}/10</h2>
-
-        </div>
-
-        <div class="dashboard-card">
-
-            <h3>🏆 Best Score</h3>
-
-            <h2>{{ dashboard.best_score }}/10</h2>
-
-        </div>
-
-        <div class="dashboard-card">
-
-            <h3>📄 Files Reviewed</h3>
-
-            <h2>{{ dashboard.files_reviewed }}</h2>
-
-        </div>
-
-    </div>
-
-    <!-- ================= Upload Form ================= -->
-
-    <form id="uploadForm">
-
-        <input
-            type="file"
-            id="codeFile"
-            name="files"
-            accept=".py,.zip"
-            multiple
-            required>
-
-        <button type="submit">
-
-            Analyze Code
-
-        </button>
-
-    </form>
-
-    <!-- Loading -->
-
-    <div
-        id="loading"
-        class="loading"
-        style="display:none;">
-
-        <div class="spinner"></div>
-
-        <p>Uploading file...</p>
-
-    </div>
-
-    <!-- AI Review -->
-
-    <div id="message"></div>
-
-    <!-- Buttons -->
-
-    <div
-        style="
-        text-align:center;
-        margin-top:25px;">
-
-        <a
-            id="downloadBtn"
-            href="/download-pdf"
-            class="download-btn"
-            style="display:none;">
-
-            📄 Download PDF Report
-
-        </a>
-
-        <a
-            href="/history"
-            class="download-btn"
-            style="margin-left:15px;">
-
-            📚 Review History
-
-        </a>
-
-    </div>
+    <div class="glow glow-purple"></div>
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-pink"></div>
 
 </div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="/" class="brand">
+
+            <div class="brand-icon">
+                ⚡
+            </div>
+
+            <span>
+                Code<span>Review</span>
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#features">
+                Features
+            </a>
+
+            <a href="#review">
+                Review
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+        </nav>
+
+
+        <a
+            href="#review"
+            class="nav-cta">
+
+            Start reviewing
+            <span>→</span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+
+            <span class="badge-dot"></span>
+
+            AI-powered
+            <span>•</span>
+            intelligent code analysis
+
+        </div>
+
+
+        <h1>
+
+            Your code.
+            <br>
+
+            <span class="gradient-text">
+                Reviewed intelligently.
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Upload your source code and get an AI-powered
+            review for bugs, security issues, performance,
+            readability and maintainability.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <a
+                href="#review"
+                class="primary-btn">
+
+                Review my code
+                <span>→</span>
+
+            </a>
+
+
+            <a
+                href="#features"
+                class="secondary-btn">
+
+                See how it works
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ANIMATED CODE WINDOW
+    ================================================== -->
+
+    <div class="code-window">
+
+        <div class="code-window-header">
+
+            <div class="window-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <div class="code-tabs">
+
+                <span class="active">
+                    review.py
+                </span>
+
+                <span>
+                    security.py
+                </span>
+
+                <span>
+                    analysis.py
+                </span>
+
+            </div>
+
+
+            <div class="analysis-status">
+
+                <span class="status-dot"></span>
+
+                analyzing...
+
+            </div>
+
+        </div>
+
+
+        <div class="code-content">
+
+            <div class="code-line">
+                <span class="line-number">01</span>
+                <span class="code-purple">def</span>
+                <span class="code-blue">review_code</span><span>(code):</span>
+            </div>
+
+            <div class="code-line">
+                <span class="line-number">02</span>
+                <span class="indent">    </span>
+                <span class="code-purple">result</span> =
+                <span class="code-blue">analyze</span>(code)
+            </div>
+
+            <div class="code-line">
+                <span class="line-number">03</span>
+                <span class="indent">    </span>
+                <span class="code-purple">return</span> result
+            </div>
+
+            <div class="code-line issue-line">
+
+                <span class="line-number">04</span>
+
+                <span class="indent">    </span>
+
+                <span class="code-orange">
+                    ⚠ Security issue detected
+                </span>
+
+            </div>
+
+            <div class="code-line">
+
+                <span class="line-number">05</span>
+
+                <span class="indent">    </span>
+
+                <span class="code-green">
+                    ✓ Performance looks good
+                </span>
+
+            </div>
+
+            <div class="code-line">
+
+                <span class="line-number">06</span>
+
+                <span class="indent">    </span>
+
+                <span class="code-blue">
+                    → 4 improvements suggested
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="code-footer">
+
+            <span>
+                AI analysis
+            </span>
+
+            <span class="footer-score">
+                Score: <strong>8.7/10</strong>
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     REVIEW SECTION
+===================================================== -->
+
+<section
+    id="review"
+    class="review-section">
+
+    <div class="section-heading">
+
+        <div class="section-badge">
+            CODE ANALYSIS
+        </div>
+
+        <h2>
+            Review your project
+        </h2>
+
+        <p>
+            Upload Python files or a ZIP project and let the
+            AI analyze your code.
+        </p>
+
+    </div>
+
+
+    <!-- ================================================
+         DASHBOARD STATS
+    ================================================= -->
+
+    <div
+        id="features"
+        class="dashboard">
+
+        <div class="dashboard-card">
+
+            <div class="stat-icon">
+                📂
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    Total Projects
+                </span>
+
+                <h3>
+                    {{ dashboard.total_projects }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="stat-icon">
+                ⭐
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    Average Score
+                </span>
+
+                <h3>
+                    {{ dashboard.average_score }}/10
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    Best Score
+                </span>
+
+                <h3>
+                    {{ dashboard.best_score }}/10
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="stat-icon">
+                📄
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    Files Reviewed
+                </span>
+
+                <h3>
+                    {{ dashboard.files_reviewed }}
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         UPLOAD CARD
+    ================================================== -->
+
+    <div class="upload-card">
+
+        <div class="upload-card-header">
+
+            <div>
+
+                <span class="upload-eyebrow">
+                    START ANALYSIS
+                </span>
+
+                <h2>
+                    Upload your code
+                </h2>
+
+                <p>
+                    Python files or complete ZIP projects are supported.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            id="uploadForm"
+            class="upload-form">
+
+
+            <label
+                for="codeFile"
+                class="drop-zone">
+
+                <div class="upload-icon">
+                    ↑
+                </div>
+
+                <h3>
+                    Drop your project here
+                </h3>
+
+                <p>
+                    or click to browse your files
+                </p>
+
+                <span class="file-types">
+                    .PY &nbsp; • &nbsp; .ZIP
+                </span>
+
+                <input
+                    type="file"
+                    id="codeFile"
+                    name="files"
+                    accept=".py,.zip"
+                    multiple
+                    required>
+
+            </label>
+
+
+            <button
+                type="submit"
+                class="analyze-btn">
+
+                <span>
+                    Analyze Code
+                </span>
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </form>
+
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
+
+        <div
+            id="loading"
+            class="loading">
+
+            <div class="analysis-loader">
+
+                <div class="loader-ring"></div>
+
+                <div class="loader-core">
+                    AI
+                </div>
+
+            </div>
+
+            <p>
+                Uploading file...
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             REVIEW RESULT
+        ================================================== -->
+
+        <div id="message"></div>
+
+
+        <!-- =================================================
+             ACTION BUTTONS
+        ================================================== -->
+
+        <div class="result-actions">
+
+            <a
+                id="downloadBtn"
+                href="/download-pdf"
+                class="download-btn"
+                style="display:none;">
+
+                📄 Download PDF Report
+
+            </a>
+
+
+            <a
+                href="/history"
+                class="history-btn">
+
+                📚 Review History
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="features-section">
+
+    <div class="section-heading">
+
+        <div class="section-badge">
+            WHAT IT CHECKS
+        </div>
+
+        <h2>
+            More than just a code score.
+        </h2>
+
+        <p>
+            Understand what is wrong with your code
+            and how to improve it.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🐞
+            </div>
+
+            <h3>
+                Bug Detection
+            </h3>
+
+            <p>
+                Identify potential bugs and logical problems
+                before they become production issues.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Security Analysis
+            </h3>
+
+            <p>
+                Detect common security weaknesses and
+                risky coding patterns.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>
+                Performance
+            </h3>
+
+            <p>
+                Find inefficient operations and opportunities
+                to make your code faster.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>
+                Maintainability
+            </h3>
+
+            <p>
+                Improve readability, structure and long-term
+                maintainability of your project.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <strong>
+            ⚡ CodeReview AI
+        </strong>
+
+        <span>
+            AI-powered software review
+        </span>
+
+    </div>
+
+    <span>
+        Built with FastAPI + AI
+    </span>
+
+</footer>
+
+
 
 <script src="/static/js/main.js"></script>
 
