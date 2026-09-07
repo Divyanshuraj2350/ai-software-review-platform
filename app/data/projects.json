@@ -209,7 +209,7 @@
         "created_at": "25-08-2026 04:39",
         "summary": {
             "total_files": 1,
-            "average_score": 62.0,
+            "average_score": 6.2,
             "total_bugs": 1,
             "total_security": 0,
             "total_performance": 2,
@@ -243,7 +243,7 @@
                 "filename": "gen10.py",
                 "language": "Python",
                 "review": {
-                    "score": 62,
+                    "score": 6.2,
                     "summary": "The script successfully implements a basic PDF text extractor and a simple command-line search interface. However, it lacks proper code structuring, lacks error handling for I/O operations, has significant performance bottlenecks during search, and pollutes the global namespace instead of using the standard `if __name__ == '__main__':` entry point.",
                     "strengths": [
                         "Simple and straightforward logic that is easy to follow.",
@@ -303,7 +303,7 @@
         "created_at": "25-08-2026 04:26",
         "summary": {
             "total_files": 1,
-            "average_score": 70.0,
+            "average_score": 7.0,
             "total_bugs": 1,
             "total_security": 0,
             "total_performance": 2,
@@ -336,7 +336,7 @@
                 "filename": "gen10.py",
                 "language": "Python",
                 "review": {
-                    "score": 70,
+                    "score": 7.0,
                     "summary": "A functional PDF search utility and CLI chatbot. While it works for small PDFs, it suffers from design limitations such as executing heavy operations and interactive loops at the module level, lack of error handling, inefficient string concatenation, and O(N) linear search performance. Refactoring into reusable functions, adding error boundaries, and optimizing search operations would greatly improve code quality.",
                     "strengths": [
                         "Clean, straightforward implementation of PDF parsing using the modern pypdf library.",
@@ -356,10 +356,10 @@
                         "Pre-compute lowercase versions of sections and content to optimize the search loop."
                     ],
                     "quality": {
-                        "readability": 75,
-                        "performance": 60,
-                        "security": 85,
-                        "maintainability": 70
+                        "readability": 7.5,
+                        "performance": 6.0,
+                        "security": 8.5,
+                        "maintainability": 7.0
                     },
                     "bugs": [
                         {
