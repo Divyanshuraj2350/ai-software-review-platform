@@ -1,5 +1,128 @@
 [
     {
+        "project_id": "1699a0c8-ead2-470a-9e76-34dd19488a1b",
+        "project_name": "05. Naive Bayes Classifier(PIMA) Project",
+        "created_at": "09-09-2026 14:20",
+        "summary": {
+            "total_files": 1,
+            "average_score": 4.25,
+            "total_bugs": 4,
+            "total_security": 1,
+            "total_performance": 2,
+            "total_pep8": 3
+        },
+        "project_ai": {
+            "health_score": 0,
+            "architecture": "Not Available",
+            "security": "Not Available",
+            "performance": "Not Available",
+            "maintainability": "Not Available",
+            "priorities": []
+        },
+        "project_risk": {
+            "risk_level": "High",
+            "production_ready": 30,
+            "estimated_fix_time": "1-2 hours",
+            "critical_issues": [
+                "Data leakage: Training on a static slice of raw data ('data[0:564]') instead of the randomized 'trainset', causing evaluation overlap with the test set.",
+                "Indentation bug in the prediction loop that causes multiple incorrect predictions to be appended per test instance.",
+                "Incorrect mathematical formula for the mean calculation, dividing by 'len(numbers) - 1' instead of 'len(numbers)', risking a ZeroDivisionError.",
+                "Hardcoded dataset split sizes making the code highly fragile and non-reusable for other datasets."
+            ],
+            "quick_wins": [
+                "Wrap the file loading process in a 'with open(...)' context manager to prevent resource leaks.",
+                "Remove the redundant outer loop in the summary generation block to resolve O(N^2) complexity.",
+                "Refactor calculations to use vectorized operations with the already-imported numpy and pandas libraries.",
+                "Correct PEP 8 styling issues, such as fixing the spelling of 'seperated' to 'separated' and renaming variables to snake_case."
+            ]
+        },
+        "reviews": [
+            {
+                "filename": "05. Naive Bayes Classifier(PIMA).py",
+                "language": "Python",
+                "review": {
+                    "score": 4.25,
+                    "summary": "The code implements a Naive Bayes classifier from scratch but contains several critical mathematical, logical, and structural bugs. It also imports libraries like numpy and pandas but does not use them, opting instead for inefficient pure-Python loops with redundant computations.",
+                    "strengths": [
+                        "Attempts to implement Naive Bayes from scratch without relying on high-level ML libraries.",
+                        "Uses basic Python standard library modules effectively for file reading and math operations."
+                    ],
+                    "weaknesses": [
+                        "Incorrect mathematical formula for calculating the mean (divides by N-1 instead of N).",
+                        "Severe indentation bug in the prediction loop, causing multiple predictions to be appended per test instance and leading to incorrect accuracy calculations.",
+                        "Data leakage due to training on the first 564 elements of the original dataset instead of the randomly sampled 'trainset'.",
+                        "Redundant nested loops when calculating summaries, leading to unnecessary performance overhead.",
+                        "Hardcoded dataset sizes (564, 204) making the code fragile and non-reusable.",
+                        "Resource leak by opening a file without using a context manager ('with' statement)."
+                    ],
+                    "suggestions": [
+                        "Fix the mean calculation to divide by 'len(numbers)'.",
+                        "Fix the indentation of the prediction block so that the best label is determined after calculating probabilities for all classes.",
+                        "Build the 'seperated' dictionary using 'trainset' instead of 'data[0:564]'.",
+                        "Remove the redundant outer loop in In[14] when generating summaries.",
+                        "Use a context manager ('with open(...) as f:') to ensure the dataset file is properly closed.",
+                        "Leverage the imported 'numpy' or 'pandas' libraries to vectorize calculations, which will significantly improve performance and readability.",
+                        "Avoid hardcoding dataset split sizes; instead, use ratios (e.g., 0.8 for training) based on the dynamic length of the dataset."
+                    ],
+                    "quality": {
+                        "readability": 4.0,
+                        "performance": 3.0,
+                        "security": 7.0,
+                        "maintainability": 3.0
+                    },
+                    "bugs": [
+                        {
+                            "line": 14,
+                            "message": "The mean function divides by 'len(numbers) - 1' instead of 'len(numbers)'. This is mathematically incorrect and will raise a ZeroDivisionError if the list contains only one element."
+                        },
+                        {
+                            "line": 58,
+                            "message": "Data leakage: 'seperated' is populated using the first 564 elements of 'data' instead of 'trainset'. Since 'test' is randomly sampled from 'data', there is an overlap between the training and testing data."
+                        },
+                        {
+                            "line": 70,
+                            "message": "Redundant loop: The outer loop 'for attribute in zip(*instances):' is unnecessary because the inner list comprehension already iterates over 'zip(*instances)'. This causes the same list comprehension to run N times and overwrite the dictionary key repeatedly."
+                        },
+                        {
+                            "line": 88,
+                            "message": "Indentation bug: The code block that finds the best label and appends to 'prediction' is nested inside the class loop. This results in multiple predictions being appended per test instance, corrupting the final accuracy calculation."
+                        }
+                    ],
+                    "security": [
+                        {
+                            "line": 32,
+                            "message": "The file is opened using 'open()' without a context manager or an explicit 'close()' call, which can lead to file descriptor leaks."
+                        }
+                    ],
+                    "performance": [
+                        {
+                            "line": 70,
+                            "message": "Redundant zip iteration in summary generation causes O(N^2) complexity instead of O(N) for attribute processing."
+                        },
+                        {
+                            "line": 78,
+                            "message": "Using pure-Python loops for mathematical operations on datasets is highly inefficient. Since numpy and pandas are imported, they should be used to vectorize these operations."
+                        }
+                    ],
+                    "pep8": [
+                        {
+                            "line": 51,
+                            "message": "Variable name 'seperated' is misspelled (should be 'separated')."
+                        },
+                        {
+                            "line": 43,
+                            "message": "Variable name 'trainset' should use snake_case ('train_set') according to PEP 8."
+                        },
+                        {
+                            "line": 81,
+                            "message": "Variable name 'classummary' should use snake_case ('class_summary') according to PEP 8."
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
         "project_id": "4932d267-991a-42ee-a648-8c9c354a979d",
         "project_name": "gen10 Project",
         "created_at": "25-08-2026 04:54",
